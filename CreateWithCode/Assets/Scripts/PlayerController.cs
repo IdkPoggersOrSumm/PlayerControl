@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public Camera mainCamera;
+    public Camera FirstPerson;
+    public KeyCode switchKey;
+
     private float speed = 20.0f;
     private float turnSpeed = 45.0f;
     private float horizontalInput;
@@ -22,5 +26,12 @@ public class PlayerController : MonoBehaviour
         transform.Rotate(Vector3.up, turnSpeed * horizontalInput * Time.deltaTime);
         horizontalInput = Input.GetAxis("Horizontal");
         forwardInput = Input.GetAxis("Vertical");
+
+        if (Input.GetKeyDown(switchKey))
+        {
+            mainCamera.enabled = !mainCamera.enabled;
+            FirstPerson.enabled = !FirstPerson.enabled;
+        }
+ 
     }
 }
